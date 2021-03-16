@@ -23,11 +23,16 @@ Configuration Diskinitialization
                         $disk |
                         Initialize-Disk -PartitionStyle GPT -PassThru |
                         New-Partition -UseMaximumSize -DriveLetter $driveLetter |
-                        Format-Volume -FileSystem NTFS -NewFileSystemLabel "$label.$count" -Confirm:$false -AllocationUnitSize 65536 -Force
-                        "driveLabel: $(($driveLabel)) driveLetter: $(($driveLetter)) driveLUN: $(($driveLun))"
+                        Format-Volume -FileSystem NTFS -NewFileSystemLabel "$driveLabel" -Confirm:$false -AllocationUnitSize 65536 -Force
+                        if ( $? ) {
+                            "Created: driveLabel: $(($driveLabel)) driveLetter: $(($driveLetter)) driveLUN: $(($driveLun))"
+                            md -Path "$(($driveLetter:\$driveLabel))"
+                        }
                     }
                 }
             }
+            # Create the D:SQLDATA if it isn't created
+            md -Path "D:\SQLDATA"
             Stop-Transcript
         }
 
