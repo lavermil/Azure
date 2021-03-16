@@ -36,7 +36,7 @@ Configuration Diskinitialization
                         New-Partition -UseMaximumSize -DriveLetter $driveLetter |
                         Format-Volume -FileSystem NTFS -NewFileSystemLabel "$driveLabel" -Confirm:$false -AllocationUnitSize 65536 -Force
                         if ( $? ) {
-                            md -Path drivePathLabel
+                            mkdir -Path drivePathLabel
                             $retstatus = $?
                             $verifypathdir = Test-Path drivePathLabel
                             if ( $retstatus -and $verifypathdir ) {
@@ -50,7 +50,7 @@ Configuration Diskinitialization
             $drivePathLabel = "D:\SQLDATA"
             $verifypathdir = Test-Path $drivePathLabel
             if ( $verifypathdir -eq $false ) {
-                md -Path $drivePathLabel
+                mkdir -Path $drivePathLabel
                 $retstatus = $?
                 $verifypathdir = Test-Path $drivePathLabel
                 if ( $retstatus -and $verifypathdir ) {
