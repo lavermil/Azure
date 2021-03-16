@@ -26,7 +26,7 @@ Configuration Diskinitialization
                     $driveLabel = $driveparam.split(",")[0]
                     $driveLetter = $driveparam.split(",")[1]
                     $driveLun = $driveparam.split(",")[2]
-                    $drivePathLetter = (-join($driveLetter,":\",$driveLabel))
+                    $drivePathLabel = (-join($driveLetter,":\",$driveLabel))
                     if ( $disk.Number -eq $driveLun ) {
                     "Working on: driveLabel: $(($driveLabel)) driveLetter: $(($driveLetter)) driveLUN: $(($driveLun))"
                         $disk |
@@ -34,9 +34,9 @@ Configuration Diskinitialization
                         New-Partition -UseMaximumSize -DriveLetter $driveLetter |
                         Format-Volume -FileSystem NTFS -NewFileSystemLabel "$driveLabel" -Confirm:$false -AllocationUnitSize 65536 -Force
                         if ( $? ) {
-                            md -Path $drivePathLetter
+                            md -Path drivePathLabel
                             $retstatus = $?
-                            $verifypathdir = Test-Path $drivePathLetter
+                            $verifypathdir = Test-Path drivePathLabel
                             if ( $retstatus -and $verifypathdir ) {
                                 "  Created: driveLabel: $(($driveLabel)) driveLetter: $(($driveLetter)) driveLUN: $(($driveLun))"
                             }
@@ -45,17 +45,17 @@ Configuration Diskinitialization
                 }
             }
             # Create the D:SQLDATA if it isn't created
-            $drivePathLetter = "D:\SQLDATA"
-            $verifypathdir = Test-Path $drivePathLetter
+            $drivePathLabel = "D:\SQLDATA"
+            $verifypathdir = Test-Path $drivePathLabel
             if ( $verifypathdir -eq $false ) {
-                md -Path $drivePathLetter
+                md -Path $drivePathLabel
                 $retstatus = $?
-                $verifypathdir = Test-Path $drivePathLetter
+                $verifypathdir = Test-Path $drivePathLabel
                 if ( $retstatus -and $verifypathdir ) {
-                    "  Created: driveLabel: $(($driveLabel)) driveLetter: $(($driveLetter)) driveLUN: $(($driveLun))"
+                    "  Created Directory: $(($drivePathLabel))"
                 }
             } else {
-                "  Already Exists: driveLabel: $(($driveLabel)) driveLetter: $(($driveLetter)) driveLUN: $(($driveLun))"
+                "  Already Exists: $(($drivePathLabel))"
             }
             Stop-Transcript
         }
