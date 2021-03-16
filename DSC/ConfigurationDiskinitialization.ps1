@@ -25,6 +25,7 @@ Configuration Diskinitialization
                         New-Partition -UseMaximumSize -DriveLetter $driveLetter |
                         Format-Volume -FileSystem NTFS -NewFileSystemLabel "$label.$count" -Confirm:$false -AllocationUnitSize 65536 -Force
                         "driveLabel: $(($driveLabel)) driveLetter: $(($driveLetter)) driveLUN: $(($driveLun))"
+                    }
                 }
             }
             Stop-Transcript
