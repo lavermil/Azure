@@ -9,6 +9,8 @@ Configuration Diskinitialization
 
             # Move DVD drive letter since it is there by default and should only be needed at provisioning, but be safe and keep it reserved.
             # https://github.com/MicrosoftDocs/azure-docs/issues/27776
+            # http://vcloud-lab.com/entries/windows-2016-server-r2/find-next-available-free-drive-letter-using-powershell-
+            # You check the next drive letter available by using: (68..90 | %{$L=[char]$_; if ((gdr).Name -notContains $L) {$L}})[0]
             # Move CD-ROM drive to Q for now:
             "Moving CD-ROM drive to Q:.."
             Get-WmiObject -Class Win32_volume -Filter 'DriveType=5' | Select-Object -First 1 | Set-WmiInstance -Arguments @{DriveLetter='Q:'}
