@@ -138,7 +138,7 @@
                         "name": "ipconfig1",
                         "properties": {
                             "publicIPAddress": {
-                                "id": "[resourceId ('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'))]"
+                                "id": "[resourceId ('Microsoft.Network/publicIPAddresses', parameters('publicIPAddressName'))]"
                             },
                             "privateIPAllocationMethod": "Static",
                             "privateIPAddress": "[parameters('privateIPAddress')]",
