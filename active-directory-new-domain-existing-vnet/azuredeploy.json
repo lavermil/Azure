@@ -104,7 +104,7 @@
             "defaultValue": "NSG-<RESOURCE_NIC_NAME> or NSG-<SUBNET_NAME>",
             "type": "String"
         }
-    },
+    }
     "resources": [
         {
             "type": "Microsoft.Network/publicIPAddresses",
