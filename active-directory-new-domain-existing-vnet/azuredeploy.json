@@ -98,13 +98,12 @@
             "metadata": {
                 "description": "ADDC Availability set name."
             }
-        }
-    },
+        },
         "networkSecurityGroups_RESOURCE_NAME_nsg_name": {
             "defaultValue": "NSG-<RESOURCE_NIC_NAME> or NSG-<SUBNET_NAME>",
             "type": "String"
         }
-    }
+    },
     "resources": [
         {
             "type": "Microsoft.Network/publicIPAddresses",
